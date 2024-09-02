@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Task Manager</title>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <h1>{{ task }}</h1>
+        </div>
+    </nav>
+    <div class="container" id="form-container">
+        <form action="{{ url_for('web.create') }}" method="POST">
+            <label for="task">Write Task</label>
+            <input type="text" name="task" placeholder="Enter your task" required>
+            <label for="description">Description</label>
+            <input type="text" name="description" placeholder="Enter your description" required>
+            <button type="submit">Create</button>
+        </form>
+    </div>
+    <div class="container" id="task-container">
+        <ul class="task-list">
+            {% for task in tasks %}
+            <li>
+                <div class="task">
+                    <form method="POST" action="{{ url_for('web.update', id=task.id) }}">
+                        <div class="task-id">Task ID: {{ task.id }}</div>
+                        <div class="task-title"><input type="text" name="task" value="{{ task.title }}" required></div>
+                        <div class="task-description"><input type="text" name="description" value="{{ task.description }}"
+                                required></div>
+                        <div class="task-complete">
+                            <label>
+                                <input type="checkbox" name="complete" {% if task.complete %}checked{% endif %}>
+                                Complete
+                            </label>
+                        </div>
+                        <button type="submit">Update</button>
+                    </form>
+                    <form method="POST" action="{{ url_for('web.delete', id=task.id) }}">
+                        <button type="submit">Delete</button>
+                    </form>
+                </div>
+            </li>
+            {% else %}
+            <li>
+                <p>No tasks to display</p>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+
+</html>

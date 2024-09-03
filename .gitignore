@@ -165,3 +165,5 @@ cython_debug/
 __pycache__
 *.pyc
 app.db
+todoapp_LOGIN/migrations/*
+!todoapp_LOGIN/migrations

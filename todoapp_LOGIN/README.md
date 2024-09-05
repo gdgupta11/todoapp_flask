@@ -3,7 +3,9 @@
 #### Flask-login for the UI endpoints.
 
 /login - By default if the user is already logged in then it will redirect to the index page else will serve the login page.
+
 /register - For registering new users. 
+
 /logout - By default if the user is already logged in then it will redirect to the login page else will serve the logout page.
 
 @login_required - This is a decorator that is used to protect the routes that are only accessible to the logged in users which is used above the routes that are protected.
@@ -29,7 +31,9 @@ role - string, nullable
 #### JWT for the API endpoints.
 
 /api/login - POST - For logging in the users and getting the access token.
+
 /api/tasks - GET, POST - For getting all the tasks and adding a new task.
+
 /api/tasks/<int:task_id> - GET, PUT, DELETE - For getting, updating and deleting the task by id.
 
 You can use the endpoints in following way.
